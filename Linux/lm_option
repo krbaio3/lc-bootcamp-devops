@@ -1,0 +1,54 @@
+#!/bin/bash
+
+URL='https://loremipsum.de/downloads/version5.txt';
+REGEX='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]';
+MOCK='Lorem';
+FILE='tmp.txt';
+
+Read () {
+
+    if [ "$1" == "url" ];
+        then
+            echo "Introduzca una url: ";
+            echo "(por defecto, la url es: '$URL')";
+
+            read VAR1;
+
+            echo -e "\n";
+        else
+            echo "Introduzca palabra a buscar: ";
+            echo "(por defecto, la palabra es: '$MOCK')";
+
+            read WORD;
+
+            echo -e "\n";
+    fi
+}
+
+Read 'url'
+
+[[ -z "$VAR1" ]] && VAR1=$URL;
+
+if [[ $VAR1 =~ $REGEX ]];
+    then
+        echo 'Download file...';
+        curl $VAR1 -o $FILE -s;
+        echo "Download in '$PWD/$FILE'";
+        echo -e "\n";
+    else
+        echo 'Error: argument is not a url';
+        echo -e "\n";
+        exit 1;
+fi
+
+Read
+
+[[ -z "$WORD" ]] && WORD=$MOCK;
+
+# grep -n -C 1 $WORD $
+
+grep -n $WORD $FILE
+
+echo -e "\n";
+
+exit 0

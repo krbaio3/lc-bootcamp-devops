@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo -n "Enter a string: "
+
+read VAR
+
+if [[ -z "$VAR" ]]
+    then
+        VAR='Que me gusta la bash!!!!';
+
+        echo -e "La cadena por defecto es: '$VAR'";
+    else    
+        echo -e "Ha instroducido esta cadena: '$VAR'";
+fi
+
+mkdir -p foo/dummy foo/empty
+
+touch foo/dummy/file2.txt 
+
+echo -e "$VAR" > foo/dummy/file1.txt
+
+cat foo/dummy/file1.txt >> foo/dummy/file2.txt
+
+mv foo/dummy/file2.txt foo/empty
