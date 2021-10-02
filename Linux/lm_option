@@ -1,0 +1,21 @@
+#!/bin/bash
+
+URL='https://lipsum.com/feed/json'
+REGEX='https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)'
+
+echo "Introduzca una url: ";
+echo "(por defecto, la url es: '$URL')";
+
+read VAR1
+
+[[ -z "$VAR1" ]] && VAR1=$URL
+
+echo $VAR1
+echo $URL
+
+if [[ $VAR1 =~ $REGEX ]];
+    then
+        echo 'comprobamos que es una url'
+    else
+        echo 'no hay valores'
+fi
