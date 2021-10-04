@@ -1,21 +1,54 @@
 #!/bin/bash
 
-URL='https://lipsum.com/feed/json'
-REGEX='https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)'
+URL='https://loremipsum.de/downloads/version5.txt';
+REGEX='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]';
+MOCK='Lorem';
+FILE='tmp.txt';
 
-echo "Introduzca una url: ";
-echo "(por defecto, la url es: '$URL')";
+Read () {
 
-read VAR1
+    if [ "$1" == "url" ];
+        then
+            echo "Introduzca una url: ";
+            echo "(por defecto, la url es: '$URL')";
 
-[[ -z "$VAR1" ]] && VAR1=$URL
+            read VAR1;
 
-echo $VAR1
-echo $URL
+            echo -e "\n";
+        else
+            echo "Introduzca palabra a buscar: ";
+            echo "(por defecto, la palabra es: '$MOCK')";
+
+            read WORD;
+
+            echo -e "\n";
+    fi
+}
+
+Read 'url'
+
+[[ -z "$VAR1" ]] && VAR1=$URL;
 
 if [[ $VAR1 =~ $REGEX ]];
     then
-        echo 'comprobamos que es una url'
+        echo 'Download file...';
+        curl $VAR1 -o $FILE -s;
+        echo "Download in '$PWD/$FILE'";
+        echo -e "\n";
     else
-        echo 'no hay valores'
+        echo 'Error: argument is not a url';
+        echo -e "\n";
+        exit 1;
 fi
+
+Read
+
+[[ -z "$WORD" ]] && WORD=$MOCK;
+
+# grep -n -C 1 $WORD $
+
+grep -n $WORD $FILE
+
+echo -e "\n";
+
+exit 0

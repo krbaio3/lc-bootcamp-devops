@@ -3,7 +3,11 @@
 Para poder ejecutar los scripts, hay que dar permisos de ejecución al archivo `lm` con este comando:
 
 ```bash
+<<<<<<< HEAD
 $ chmod +x lm
+=======
+$ chmod +x lm lm_improve lm_option
+>>>>>>> 48948987edb2407fe2ea5d6fdfeff3a69ed9ed05
 done!
 ```
 
@@ -84,6 +88,11 @@ done!
 
 Una vez descargado el fichero, que busque en el mismo una palabra dada (esta se pasará por parametro) y muestre por pantalla el número de linea donde aparece.
 
-grep "cadena_a_buscar" archivo
+**Respuesta:**
 
-| wc -w
+Ejecutar script:
+
+```bash
+$ ./lm_option
+done!
+```
