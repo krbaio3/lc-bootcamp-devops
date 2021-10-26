@@ -3,7 +3,11 @@
 Para poder ejecutar los scripts, hay que dar permisos de ejecución al archivo `lm` con este comando:
 
 ```bash
+<<<<<<< HEAD
+$ chmod +x lm
+=======
 $ chmod +x lm lm_improve lm_option
+>>>>>>> 48948987edb2407fe2ea5d6fdfeff3a69ed9ed05
 done!
 ```
 
