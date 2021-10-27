@@ -7,7 +7,7 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/backend/backend.csproj",
+        "${workspaceFolder}/Docker/Lab/backend/backend.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -19,7 +19,7 @@
       "type": "process",
       "args": [
         "publish",
-        "${workspaceFolder}/backend/backend.csproj",
+        "${workspaceFolder}/Docker/Lab/backend/backend.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -32,7 +32,7 @@
       "args": [
         "watch",
         "run",
-        "${workspaceFolder}/backend/backend.csproj",
+        "${workspaceFolder}/Docker/Lab/backend/backend.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -43,12 +43,12 @@
       "label": "docker-build",
       "platform": "node",
       "dockerBuild": {
-        "dockerfile": "${workspaceFolder}/frontend/Dockerfile",
-        "context": "${workspaceFolder}/frontend",
+        "dockerfile": "${workspaceFolder}/Docker/Lab/frontend/Dockerfile",
+        "context": "${workspaceFolder}/Docker/Lab/frontend",
         "pull": true
       },
       "node": {
-        "package": "${workspaceFolder}/frontend/package.json"
+        "package": "${workspaceFolder}/Docker/Lab/frontend/package.json"
       }
     },
     {
@@ -57,7 +57,7 @@
       "dependsOn": ["docker-build: release"],
       "dockerRun": {},
       "netCore": {
-        "appProject": "${workspaceFolder}/backend/backend.csproj"
+        "appProject": "${workspaceFolder}/Docker/Lab/backend/backend.csproj"
       }
     },
     {
@@ -66,7 +66,7 @@
       "dependsOn": ["docker-build: debug"],
       "dockerRun": {},
       "netCore": {
-        "appProject": "${workspaceFolder}/backend/backend.csproj",
+        "appProject": "${workspaceFolder}/Docker/Lab/backend/backend.csproj",
         "enableDebugging": true
       }
     },
@@ -75,14 +75,14 @@
       "label": "docker-build: debug",
       "dependsOn": ["build"],
       "dockerBuild": {
-        "tag": "lab:dev",
+        "tag": "lmbootcaampdevops:dev",
         "target": "base",
-        "dockerfile": "${workspaceFolder}/backend/Dockerfile",
+        "dockerfile": "${workspaceFolder}/Docker/Lab/backend/Dockerfile",
         "context": "${workspaceFolder}",
         "pull": true
       },
       "netCore": {
-        "appProject": "${workspaceFolder}/backend/backend.csproj"
+        "appProject": "${workspaceFolder}/Docker/Lab/backend/backend.csproj"
       }
     },
     {
@@ -90,13 +90,13 @@
       "label": "docker-build: release",
       "dependsOn": ["build"],
       "dockerBuild": {
-        "tag": "lab:latest",
-        "dockerfile": "${workspaceFolder}/backend/Dockerfile",
+        "tag": "lmbootcaampdevops:latest",
+        "dockerfile": "${workspaceFolder}/Docker/Lab/backend/Dockerfile",
         "context": "${workspaceFolder}",
         "pull": true
       },
       "netCore": {
-        "appProject": "${workspaceFolder}/backend/backend.csproj"
+        "appProject": "${workspaceFolder}/Docker/Lab/backend/backend.csproj"
       }
     }
   ]

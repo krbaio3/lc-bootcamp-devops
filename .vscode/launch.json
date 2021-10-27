@@ -6,9 +6,9 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/backend/bin/Debug/netcoreapp3.1/backend.dll",
+      "program": "${workspaceFolder}/Docker/Lab/backend/bin/Debug/netcoreapp3.1/backend.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/backend",
+      "cwd": "${workspaceFolder}/Docker/Lab/backend",
       "stopAtEntry": false,
       "serverReadyAction": {
         "action": "openExternally",
@@ -33,8 +33,8 @@
       "preLaunchTask": "docker-run: debug",
       "platform": "node",
       "node": {
-        "package": "${workspaceFolder}/frontend/package.json",
-        "localRoot": "${workspaceFolder}/frontend"
+        "package": "${workspaceFolder}/Docker/Lab/frontend/package.json",
+        "localRoot": "${workspaceFolder}/Docker/Lab/frontend"
       }
     },
     {
@@ -43,7 +43,7 @@
       "request": "launch",
       "preLaunchTask": "docker-run: debug",
       "netCore": {
-        "appProject": "${workspaceFolder}/backend/backend.csproj"
+        "appProject": "${workspaceFolder}/Docker/Lab/backend/backend.csproj"
       }
     }
   ]

@@ -6,9 +6,9 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/backend/bin/Debug/netcoreapp3.1/backend.dll",
+      "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/backend.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/backend",
+      "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
       "serverReadyAction": {
         "action": "openExternally",
@@ -27,23 +27,12 @@
       "request": "attach"
     },
     {
-      "name": "Docker Node.js Launch",
-      "type": "docker",
-      "request": "launch",
-      "preLaunchTask": "docker-run: debug",
-      "platform": "node",
-      "node": {
-        "package": "${workspaceFolder}/frontend/package.json",
-        "localRoot": "${workspaceFolder}/frontend"
-      }
-    },
-    {
       "name": "Docker .NET Core Launch",
       "type": "docker",
       "request": "launch",
       "preLaunchTask": "docker-run: debug",
       "netCore": {
-        "appProject": "${workspaceFolder}/backend/backend.csproj"
+        "appProject": "${workspaceFolder}/backend.csproj"
       }
     }
   ]

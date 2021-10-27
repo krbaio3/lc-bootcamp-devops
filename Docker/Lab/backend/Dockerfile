@@ -1,19 +1,26 @@
-# syntax=docker/dockerfile:1
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/aspnet:3.1-focal AS base
 WORKDIR /app
+EXPOSE 5000
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+ENV ASPNETCORE_URLS=http://+:5000
 
-# Copy everything else and build
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
+
+FROM mcr.microsoft.com/dotnet/sdk:3.1-focal AS build
+WORKDIR /src
+COPY ["backend/backend.csproj", "backend/"]
+RUN dotnet restore "backend/backend.csproj"
 COPY . .
-WORKDIR /app
-RUN dotnet build -c Release -o out
+WORKDIR "/src/backend"
+RUN dotnet build "backend.csproj" -c Release -o /app/build
 
-# Publish
 FROM build AS publish
-RUN dotnet publish -c Release -o out
+RUN dotnet publish "backend.csproj" -c Release -o /app/publish
 
-# Build runtime image
-CMD ["dotnet", "run"]
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "backend.dll"]
