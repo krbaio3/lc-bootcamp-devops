@@ -9,7 +9,7 @@ introducir datos mongoCompass
 user/pass
 create database TopicstoreDb
 create collection Topics
-add structure
+add Topics.json to mongoCompass
 
 instalar dotnet
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb

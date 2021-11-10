@@ -23,7 +23,8 @@ Nota: es más fácil si abres Visual Studio Code desde la carpeta backend para h
 
 Tip para frontend: Para ejecutar el frontend abre esta carpeta en VS Code y ejecuta primero npm install. Una vez instaladas las dependencias ya puedes ejecutarla con npm start. Debería de abrirse un navegador con lo siguiente:
 
-Topics
+![Topics](./topics.png)
+
 Ejercicio 2
 
 Ahora que ya tienes la aplicación del ejercicio 1 dockerizada, utiliza Docker Compose para lanzar todas las piezas a través de este. Debes plasmar todo lo necesario para que esta funcione como se espera: la red que utilizan, el volumen que necesita MongoDB, las variables de entorno, el puerto que expone la web y la API. Además debes indicar qué comandos utilizarías para levantar el entorno, pararlo y eliminarlo.
