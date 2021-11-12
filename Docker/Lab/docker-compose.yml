@@ -1,0 +1,44 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: "3.4"
+
+services:
+  frontend:
+    image: frontend
+    build:
+      context: frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:3000
+    depends_on:
+      - backend
+    networks:
+      - lemoncode-challenge
+
+  backend:
+    image: backend
+    build:
+      context: backend
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:5000
+    networks:
+      - lemoncode-challenge
+    depends_on:
+      - some-mongo
+
+  some-mongo:
+    image: mongo
+    volumes:
+      - ./db_data:/data/db
+    restart: always
+    ports:
+      - 27017:27017
+    networks:
+      - lemoncode-challenge
+
+volumes:
+  db_data:
+
+networks:
+  lemoncode-challenge:
