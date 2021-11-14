@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  containers:
+    - name: myapp
+      image: mysql:8
+      ports:
+        - containerPort: 3306
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: Passw0rd!
+        - name: MYSQL_USER
+          value: eduwp
+        - name: MYSQL_PASSWORD
+          value: Passw0rd!
+        - name: MYSQL_DATABASE
+          value: wpdata

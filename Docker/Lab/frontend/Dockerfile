@@ -2,6 +2,8 @@ FROM node:14-alpine
 
 ENV NODE_ENV=production
 
+ENV API_URI=http://topics-api:5000/api/topics
+
 WORKDIR /usr/src/app
 
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
@@ -17,3 +19,4 @@ RUN chown -R node /usr/src/app
 USER node
 
 CMD ["npm", "start"]
+

@@ -1,4 +1,6 @@
-Ejercicio 1
+# Lab
+
+## Ejercicio 1
 
 Dockeriza la aplicación dentro de lemoncode-challenge, la cual está compuesta de 3 partes:
 
@@ -25,6 +27,6 @@ Tip para frontend: Para ejecutar el frontend abre esta carpeta en VS Code y ejec
 
 ![Topics](./topics.png)
 
-Ejercicio 2
+## Ejercicio 2
 
 Ahora que ya tienes la aplicación del ejercicio 1 dockerizada, utiliza Docker Compose para lanzar todas las piezas a través de este. Debes plasmar todo lo necesario para que esta funcione como se espera: la red que utilizan, el volumen que necesita MongoDB, las variables de entorno, el puerto que expone la web y la API. Además debes indicar qué comandos utilizarías para levantar el entorno, pararlo y eliminarlo.
