@@ -11,10 +11,10 @@ USER appuser
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1-focal AS build
 WORKDIR /src
-COPY ["backend/backend.csproj", "backend/"]
-RUN dotnet restore "backend/backend.csproj"
+COPY ["backend.csproj", "./"]
+RUN dotnet restore "backend.csproj"
 COPY . .
-WORKDIR "/src/backend"
+WORKDIR "/src/."
 RUN dotnet build "backend.csproj" -c Release -o /app/build
 
 FROM build AS publish

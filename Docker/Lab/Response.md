@@ -24,3 +24,5 @@ MONGO
 $ docker run -it --network lemoncode-challenge --rm mongo mongo --host some-mongo -v /my/own/datadir:/data/db test
 URL mongodb://some-mongo:27017
 /data/db.
+
+Se cambia en appsettings.json la url donde ataca a mongo

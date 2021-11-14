@@ -54,19 +54,24 @@
     {
       "type": "docker-run",
       "label": "docker-run: release",
-      "dependsOn": ["docker-build: release"],
-      "dockerRun": {},
-      "netCore": {
-        "appProject": "${workspaceFolder}/backend/backend.csproj"
+      "dependsOn": ["docker-build"],
+      "platform": "node",
+      "node": {
+        "package": "${workspaceFolder}/frontend/package.json"
       }
     },
     {
       "type": "docker-run",
       "label": "docker-run: debug",
-      "dependsOn": ["docker-build: debug"],
-      "dockerRun": {},
-      "netCore": {
-        "appProject": "${workspaceFolder}/backend/backend.csproj",
+      "dependsOn": ["docker-build"],
+      "dockerRun": {
+        "env": {
+          "DEBUG": "*",
+          "NODE_ENV": "development"
+        }
+      },
+      "node": {
+        "package": "${workspaceFolder}/frontend/package.json",
         "enableDebugging": true
       }
     },
