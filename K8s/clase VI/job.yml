@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myjob
+spec:
+  ttlSecondsAfterFinished: 100
+  completions: 5
+  parallelism: 2
+  template:
+    spec:
+      containers:
+        - name: pi
+          image: perl
+          command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never
+
+---
+apiVersion: batch/v1
+kind: Cronjob
+metadata:
+  name: xxxx
+spec:
+  schedule: "1 * * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 100
+      completions: 5
+      parallelism: 2
+      template:
+        spec:
+          containers:
+            - name: pi
+              image: perl
+              command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+          restartPolicy: Never

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: probes
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: probes
+  template:
+    metadata:
+      labels:
+        app: probes
+    spec:
+      imagePullSecrets:
+        - name: acr
+      containers:
+        - name: probes
+          image: lck8s.azurecr.io/liveready
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+          livenessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 1
+            httpGet:
+              path: /health
+              port: 80
+          readinessProbe:
+            initialDelaySeconds: 20
+            failureThreshold: 1
+            periodSeconds: 10
+            httpGet:
+              path: /ready
+              port: 80

@@ -184,3 +184,25 @@ $ docker-compose down
  ⠿ Container lab-some-mongo-1       Removed                                                                                                                                                                                    0.2s
  ⠿ Network lab_lemoncode-challenge  Removed
 ```
+
+Para pararlo, eliminar los contenedores y los volumenes:
+
+```bash
+$ docker-compose down -v
+[+] Running 4/4
+ ⠿ Container lab-frontend-1         Removed                                                                                                                                                                                    0.2s
+ ⠿ Container lab-topics-api-1       Removed                                                                                                                                                                                    0.2s
+ ⠿ Container lab-some-mongo-1       Removed                                                                                                                                                                                    0.2s
+ ⠿ Network lab_lemoncode-challenge  Removed
+```
+
+Para pararlo, eliminar los contenedores, los volumenes y las imágenes que usa:
+
+```bash
+$ docker-compose down -v --rmi
+[+] Running 4/4
+ ⠿ Container lab-frontend-1         Removed                                                                                                                                                                                    0.2s
+ ⠿ Container lab-topics-api-1       Removed                                                                                                                                                                                    0.2s
+ ⠿ Container lab-some-mongo-1       Removed                                                                                                                                                                                    0.2s
+ ⠿ Network lab_lemoncode-challenge  Removed
+```
