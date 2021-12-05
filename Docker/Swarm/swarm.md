@@ -46,3 +46,5 @@ Salimos del cluster:
 ▶ docker swarm leave --force
 Node left the swarm.
 ```
+
+creamos con Docker machine las máquinas
