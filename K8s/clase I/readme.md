@@ -55,6 +55,33 @@ Server Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.4", GitCom
 
 ## Kubernetes por dentro
 
-Un cluster tiene dos tipos de nodos, los Worker, que ejecutan contenedores, y luego, nodos master que ejecutan el control plain, y en principio en un kubernetes de produccion se dedican a ejecutar exclusivamente nodos control plane. Para alta disponibilidad se necesitan tres nodos master y dos nodos worker. Cinco máquinas que tres no van a ejecutar contenedores. Esto te soporta la caida de un nodo master y un nodo worker.
+Un cluster tiene dos tipos de nodos:
 
-Control Plane: es el core de kubernetes.
+- Worker, que ejecutan contenedores
+- Master, que ejecutan el control plain
+
+En principio en un kubernetes de produccion se dedican a ejecutar exclusivamente nodos control plane.
+Para tener un cluster de alta disponibilidad se necesitan tres nodos master y dos nodos worker. Cinco máquinas que tres no van a ejecutar contenedores.
+Esto te soporta la caida de un nodo master y un nodo worker.
+
+![k8s-1](./k8s-1.png)
+
+- Control Plane: es el core de kubernetes. Lo ejecutan nodos master.
+- Api: Api Server. Tenemos una Api-rest con la que nos comunicamos con k8s, que se dedica a recibir todas las peticiones http. Es un componente critico. Esta api, la llamamos desde fuera, y los componentes de k8s, para pedir informacion y tomar acciones. Si se cae este componente, el cluster deja de estar operativo.
+- ccm: Cloud Control Manager. Son como watcher, se encargan de monitorizar los contenedores de tu cluster.
+- cm: Control Manager. Son como watcher, se encargan de monitorizar los contenedores de tu cluster.
+  etcd: etcd persistent store. Es una bbdd clave valor de altisimo rendimiento, tienes que tener backups de el continuamente. Todo el estado del cluster se guarda aquí.
+- sched: Scheduler. su unico trabajo es repartir la carga de trabajo en los nodos worker
+- k-proxy: kube-proxy. Crea red virtual entre todos los nodos.
+- kubelet: kubelet es un daemon, no se ejecuta como contenedor, es el responsable de que ese nodo haga lo que le digan. Le va preguntando al CP o API qué tiene que hacer
+
+## Picando
+
+minikube start
+k version
+
+```bash
+$ k version
+Client Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.2", GitCommit:"8b5a19147530eaac9476b0ab82980b4088bbc1b2", GitTreeState:"clean", BuildDate:"2021-09-15T21:38:50Z", GoVersion:"go1.16.8", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.2", GitCommit:"8b5a19147530eaac9476b0ab82980b4088bbc1b2", GitTreeState:"clean", BuildDate:"2021-09-15T21:32:41Z", GoVersion:"go1.16.8", Compiler:"gc", Platform:"linux/amd64"}
+```
